@@ -1,0 +1,31 @@
+{
+  "name": "object-mapper-challenge",
+  "version": "1.0.0",
+  "description": "Object mapper technical challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha tests/object-mapper.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roxwhale/object-mapper-challenge.git"
+  },
+  "author": "Etienne Stanowski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/roxwhale/object-mapper-challenge/issues"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  },
+  "engines": {
+    "node": ">=8.11.0",
+    "npm": ">=5.5.0"
+  },
+  "homepage": "https://github.com/roxwhale/object-mapper-challenge#readme",
+  "private": true
+}
