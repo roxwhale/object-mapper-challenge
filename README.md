@@ -2,7 +2,7 @@
 
 ## Description
 
-Starting form unit tests file `object-mapper.test.js`, implement `ObjectMapper` library.  
+Starting from unit tests file `object-mapper.test.js`, implement `ObjectMapper` library.  
 There is no specific order, you should pass the maximum number of unit tests.
 
 ## Env
