@@ -58,84 +58,6 @@ describe('Object Mapper library', function() {
         });
     });
 
-    describe('Global options', function() {
-        it('strictSource: false', function(done) {
-            const saved = objectMapper.opts.strictSource;
-            objectMapper.opts.strictSource = false;
-            expect(() => objectMapper({ 'property[1].value[]': 'newProperty[].dest[]' })).to.not.throw();
-            expect(() => objectMapper({ 'property[].value[]': 'newProperty[].dest' })).to.throw();
-            objectMapper.opts.strictSource = saved;
-            done();
-        });
-        it('strictSource: true', function(done) {
-            const saved = objectMapper.opts.strictSource;
-            objectMapper.opts.strictSource = true;
-            expect(() => objectMapper({ 'property[1].value[]': 'newProperty[].dest[]' })).to.throw();
-            expect(() => objectMapper({ 'property[].value[]': 'newProperty[].dest' })).to.throw();
-            objectMapper.opts.strictSource = saved;
-            done();
-        });
-    });
-
-    describe('Mapping keys errors', function() {
-        describe('Source', function() {
-            it('Invalid array lookup', function(done) {
-                expect(() => objectMapper({ 'property[[].value[]': 'newProperty[].dest[]' })).to.throw();
-                done();
-            });
-            it('Invalid isolated array lookup', function(done) {
-                expect(() => objectMapper({ 'property.[].value[]': 'newProperty[].dest[]' })).to.throw();
-                done();
-            });
-            it('Invalid array index', function(done) {
-                expect(() => objectMapper({ 'property[d].value[]': 'newProperty[].dest[]' })).to.throw();
-                done();
-            });
-            it('Invalid isolated array index', function(done) {
-                expect(() => objectMapper({ 'property.[5].value[]': 'newProperty[].dest[]' })).to.throw();
-                done();
-            });
-            it('Invalid property key', function(done) {
-                expect(() => objectMapper({ 'prop[]erty.value[]': 'newProperty[].dest[]' })).to.throw();
-                done();
-            });
-            it('Invalid property key', function(done) {
-                expect(() => objectMapper({ 'prop[1]erty.value[]': 'newProperty[].dest[]' })).to.throw();
-                done();
-            });
-        });
-        describe('Destination', function() {
-            it('Invalid array lookup', function(done) {
-                expect(() => objectMapper({ 'property.[].value[]': 'property[[].value[]' })).to.throw();
-                done();
-            });
-            it('Invalid isolated array lookup', function(done) {
-                expect(() => objectMapper({ 'property.[].value[]': 'property.[].value[]' })).to.throw();
-                done();
-            });
-            it('Invalid array index', function(done) {
-                expect(() => objectMapper({ 'property.[].value[]': 'property[d].value[]' })).to.throw();
-                done();
-            });
-            it('Invalid isolated array index', function(done) {
-                expect(() => objectMapper({ 'property.[].value[]': 'property.[5].value[]' })).to.throw();
-                done();
-            });
-            it('Invalid property key', function(done) {
-                expect(() => objectMapper({ 'property.[].value[]': 'prop[]erty.value[]' })).to.throw();
-                done();
-            });
-            it('Invalid property key', function(done) {
-                expect(() => objectMapper({ 'property.[].value[]': 'prop[1]erty.value[]' })).to.throw();
-                done();
-            });
-            it('Invalid array lookup count', function(done) {
-                expect(() => objectMapper({ 'property[].value[]': 'newProperty[].dest' })).to.throw();
-                done();
-            });
-        });
-    });
-
     describe('With array indexes and lookups', function() {
         describe('Lookup', function() {
             it('Basic lookup', function(done) {
@@ -1077,6 +999,84 @@ describe('Object Mapper library', function() {
                 },
             });
             done();
+        });
+    });
+    
+    describe('Global options', function() {
+        it('strictSource: false', function(done) {
+            const saved = objectMapper.opts.strictSource;
+            objectMapper.opts.strictSource = false;
+            expect(() => objectMapper({ 'property[1].value[]': 'newProperty[].dest[]' })).to.not.throw();
+            expect(() => objectMapper({ 'property[].value[]': 'newProperty[].dest' })).to.throw();
+            objectMapper.opts.strictSource = saved;
+            done();
+        });
+        it('strictSource: true', function(done) {
+            const saved = objectMapper.opts.strictSource;
+            objectMapper.opts.strictSource = true;
+            expect(() => objectMapper({ 'property[1].value[]': 'newProperty[].dest[]' })).to.throw();
+            expect(() => objectMapper({ 'property[].value[]': 'newProperty[].dest' })).to.throw();
+            objectMapper.opts.strictSource = saved;
+            done();
+        });
+    });
+
+    describe('Mapping keys errors', function() {
+        describe('Source', function() {
+            it('Invalid array lookup', function(done) {
+                expect(() => objectMapper({ 'property[[].value[]': 'newProperty[].dest[]' })).to.throw();
+                done();
+            });
+            it('Invalid isolated array lookup', function(done) {
+                expect(() => objectMapper({ 'property.[].value[]': 'newProperty[].dest[]' })).to.throw();
+                done();
+            });
+            it('Invalid array index', function(done) {
+                expect(() => objectMapper({ 'property[d].value[]': 'newProperty[].dest[]' })).to.throw();
+                done();
+            });
+            it('Invalid isolated array index', function(done) {
+                expect(() => objectMapper({ 'property.[5].value[]': 'newProperty[].dest[]' })).to.throw();
+                done();
+            });
+            it('Invalid property key', function(done) {
+                expect(() => objectMapper({ 'prop[]erty.value[]': 'newProperty[].dest[]' })).to.throw();
+                done();
+            });
+            it('Invalid property key', function(done) {
+                expect(() => objectMapper({ 'prop[1]erty.value[]': 'newProperty[].dest[]' })).to.throw();
+                done();
+            });
+        });
+        describe('Destination', function() {
+            it('Invalid array lookup', function(done) {
+                expect(() => objectMapper({ 'property.[].value[]': 'property[[].value[]' })).to.throw();
+                done();
+            });
+            it('Invalid isolated array lookup', function(done) {
+                expect(() => objectMapper({ 'property.[].value[]': 'property.[].value[]' })).to.throw();
+                done();
+            });
+            it('Invalid array index', function(done) {
+                expect(() => objectMapper({ 'property.[].value[]': 'property[d].value[]' })).to.throw();
+                done();
+            });
+            it('Invalid isolated array index', function(done) {
+                expect(() => objectMapper({ 'property.[].value[]': 'property.[5].value[]' })).to.throw();
+                done();
+            });
+            it('Invalid property key', function(done) {
+                expect(() => objectMapper({ 'property.[].value[]': 'prop[]erty.value[]' })).to.throw();
+                done();
+            });
+            it('Invalid property key', function(done) {
+                expect(() => objectMapper({ 'property.[].value[]': 'prop[1]erty.value[]' })).to.throw();
+                done();
+            });
+            it('Invalid array lookup count', function(done) {
+                expect(() => objectMapper({ 'property[].value[]': 'newProperty[].dest' })).to.throw();
+                done();
+            });
         });
     });
 
